@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <h3 class='mt-4 mb-4'> Welcome {{user.username|capfirst}}!! </h3>
+
+
+        <form action="{%url 'search' %}" method="GET" style="position: center;">
+            <input type="search" name="q" placeholder="Search">
+            <button type="submit"> Search </button> 
+        </form>
+
+
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col">Sr. No.</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Description</th>
+                <th scope="col">Department</th>
+                <th scope="col">Price</th>
+                <th scope="col">InvoiceNo</th>
+                <th scope="col">PurchasingDate</th>
+                <th scope="col">Warranty</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for row in model %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ row.Name }}</td>
+                        <td>{{ row.Quantity }}</td>
+                        <td>{{ row.Description }}</td>  
+                        <td>{{ row.Department }}</td>  
+                        <td>{{ row.Price }}</td>  
+                        <td>{{ row.InvoiceNo }}</td>  
+                        <td>{{ row.PurchasingDate }}</td>  
+                        <td>{{ row.Warranty }}</td>  
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
